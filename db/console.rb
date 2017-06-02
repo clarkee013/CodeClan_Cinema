@@ -5,6 +5,10 @@ require_relative '../models/tickets'
 
 customer1 = Customers.new({
   'name' => 'David',
+  'cash' => 10
+})
+customer2 = Customers.new({
+  'name' => 'Fee',
   'cash' => 20
 })
 
@@ -12,6 +16,10 @@ customer1 = Customers.new({
 
 film1 = Films.new({
   'title' => 'Guardians of the Galaxy 2',
+  'price' => 5
+  })
+film2 = Films.new({
+  'title' => 'Doctor Strange',
   'price' => 5
   })
 
