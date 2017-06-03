@@ -7,14 +7,15 @@ attr_accessor :id, :name, :cash
 def initialize (options)
   @id = options['id'].to_i if options['id']
   @name = options['name']
-  @funds = options['cash']
+  @cash = options['cash']
 end
 
 # C-R-U-D functions first
 
   def save()
-    sql = "INSERT INTO customers (name, cash), VALUES ('#{@name}', #{cash}), RETURNING * ;"
-    SqlRunner.run(sql)
+    sql = "INSERT INTO customers (name, cash) VALUES ('#{@name}', '#{@cash}') RETURNING * ;"
+    result = SqlRunner.run(sql)
+    @id = result[0]['id'].to_i() # not sure what this is doing but the hospital lab had it in & an error concerning this method has stopped when running console.rb
   end
 
   def self.all()
@@ -61,5 +62,12 @@ end
     results = SqlRunner.run(sql)
     return results.map { |customer| Customer.new(customer)}
   end
+
+  def show_booked_films_by_customer
+    sql = "SELECT customers.name, films.title FROM customers INNER JOIN tickets ON tickets.customer_id = customer_id INNER JOIN films ON films.id = tickets.film_id;"
+    reslts = SqlRunner.run(sql)
+    return results.map { |customer| Customer.new(customer)}
+  end
+
 
 end # END of CLASS

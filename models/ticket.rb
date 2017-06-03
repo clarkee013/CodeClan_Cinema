@@ -12,8 +12,9 @@ end
 
 
   def save()
-    sql = "INSERT INTO tickets (film_id, customer_id), VALUES (#{@film_id}, #{customer_id}), RETURNING * ;"
-    SqlRunner.run(sql)
+    sql = "INSERT INTO tickets (film_id, customer_id) VALUES (#{@film_id}, #{@customer_id}) RETURNING * ;"
+    result = SqlRunner.run(sql)
+    @id = result[0]['id'].to_i() # not sure what this is doing but the hospital lab had it in & an error concerning this method has stopped when running console.rb
   end
 
   def self.all()
