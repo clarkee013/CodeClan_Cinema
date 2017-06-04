@@ -63,4 +63,10 @@ end
     return results.map { |film| Film.new(film)}
   end
 
+  def show_film_bookings()
+    sql = "SELECT films.title, customers.name FROM films INNER JOIN tickets ON tickets.customer_id = films.id  INNER JOIN customers ON customers.id = tickets.film_id;"
+    # not quite the 'see which cusotmers are coming to see one film', needs reworked as this gives a ful list of all films with who is going to see them. Still believe it should be a triple inner join since the tickets is the link to who is booked for what film.
+
+  end
+
 end # END of CLASS

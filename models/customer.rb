@@ -63,11 +63,16 @@ end
     return results.map { |customer| Customer.new(customer)}
   end
 
-  def show_booked_films_by_customer
+  def show_customer_bookings()
     sql = "SELECT customers.name, films.title FROM customers INNER JOIN tickets ON tickets.customer_id = customer_id INNER JOIN films ON films.id = tickets.film_id;"
     reslts = SqlRunner.run(sql)
     return results.map { |customer| Customer.new(customer)}
   end
+
+  def show_ticket_purchases_by_customer()
+    sql = "SELECT customers. *, tickets. * FROM customers LEFT JOIN tickets ON customer.id = tickets.customer_id;"
+  end
+  # not sure how the amount of tickets per customer would look like the above, but i think there should be an array creation maybe to count the tickets?
 
 
 end # END of CLASS
